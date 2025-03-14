@@ -16,9 +16,26 @@
         <div id="loja"></div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+    <!-- Firebase SDK (modular) -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+      // Sua configuração do Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyDKv6iwy2bUMX67Gdud48UByHl4iBvUjFc",
+        authDomain: "animeclicker-5de9c.firebaseapp.com",
+        projectId: "animeclicker-5de9c",
+        storageBucket: "animeclicker-5de9c.firebasestorage.app",
+        messagingSenderId: "53575639513",
+        appId: "1:53575639513:web:2861bcbe65ba1bed1739c8"
+      };
+
+      // Inicializa o Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>

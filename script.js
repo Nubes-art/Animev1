@@ -1,16 +1,5 @@
-// Configuração do Firebase
-const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_DOMINIO.firebaseapp.com",
-    projectId: "SEU_PROJECT_ID",
-    storageBucket: "SEU_BUCKET.appspot.com",
-    messagingSenderId: "SEU_ID",
-    appId: "SUA_APP_ID"
-};
-
-// Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// Referência ao Firestore
+const db = window.db; // Acessa a variável db que foi configurada no index.html
 
 // Identificação do jogador (simples, sem autenticação)
 const userId = "teste_user"; 
@@ -25,7 +14,7 @@ userRef.get().then((doc) => {
         afeto = doc.data().afeto || 0;
         document.getElementById("afeto").innerText = afeto;
     } else {
-        userRef.set({ afeto: 0 });
+        userRef.set({ afeto: 0 }); // Cria um novo usuário se não existir
     }
 });
 
@@ -62,7 +51,7 @@ atualizarLoja();
 // Comprar personagem
 function comprarPersonagem(index) {
     const p = personagens[index];
-    
+
     if (afeto >= p.preco) {
         afeto -= p.preco;
         document.getElementById("afeto").innerText = afeto;

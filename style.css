@@ -2,21 +2,56 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #fce4ec;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 button {
     font-size: 20px;
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #ff4081;
     border: none;
     color: white;
     cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #e91e63;
+    transform: scale(1.05); /* Efeito de aumento no botão */
+}
+
+button:active {
+    transform: scale(1); /* Reduz o efeito de aumento quando pressionado */
+}
+
+h1 {
+    color: #ff4081;
+}
+
+h2 {
+    color: #e91e63;
+}
+
+#afeto {
+    font-weight: bold;
+    color: #ff4081;
+}
+
+#loja {
+    margin-top: 20px;
 }
