@@ -2,11 +2,12 @@
 const db = window.db; // Acessa a variável db que foi configurada no index.html
 
 // Identificação do jogador (simples, sem autenticação)
-const userId = "teste_user"; 
+const userId = "teste_user";
 const userRef = db.collection("jogadores").doc(userId);
 
 // Variáveis do jogo
 let afeto = 0;
+let bonusPorClique = 1; // Variável global para armazenar o bônus por clique
 
 // Carregar progresso salvo no Firebase
 userRef.get().then((doc) => {
@@ -20,7 +21,7 @@ userRef.get().then((doc) => {
 
 // Sistema de clique
 document.getElementById("clique").addEventListener("click", () => {
-    afeto++;
+    afeto += bonusPorClique; // Usa a variável de bônus
     document.getElementById("afeto").innerText = afeto;
 
     // Salvar no Firebase
@@ -57,13 +58,10 @@ function comprarPersonagem(index) {
         document.getElementById("afeto").innerText = afeto;
         userRef.update({ afeto: afeto });
 
-        alert(`${p.nome} comprada! Você ganha +${p.bonus} afeto por clique.`);
+        // Adiciona o bônus ao bônus total por clique
+        bonusPorClique += p.bonus;
 
-        document.getElementById("clique").addEventListener("click", () => {
-            afeto += p.bonus;
-            document.getElementById("afeto").innerText = afeto;
-            userRef.update({ afeto: afeto });
-        });
+        alert(`${p.nome} comprada! Bônus total: +${bonusPorClique - 1} por clique.`);
     } else {
         alert("Afeto insuficiente!");
     }
