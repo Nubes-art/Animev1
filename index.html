@@ -1,35 +1,59 @@
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-  import { getFirestore, collection, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Anime Clicker</h1>
+        <p>Afeto: <span id="afeto">0</span></p>
+        <button id="clique">💖 Clicar</button>
 
-  // Your Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDKv6iwy2bUMX67Gdud48UByHl4iBvUjFc",
-    authDomain: "animeclicker-5de9c.firebaseapp.com",
-    projectId: "animeclicker-5de9c",
-    storageBucket: "animeclicker-5de9c.appspot.com",
-    messagingSenderId: "53575639513",
-    appId: "1:53575639513:web:2861bcbe65ba1bed1739c8"
-  };
+        <h2>Loja</h2>
+        <div id="loja"></div>
+    </div>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+    <!-- Firebase SDK (modular) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-  // Make Firebase functions available globally
-  window.firebaseDB = {
-    db: db,
-    getDocument: async function(collectionName, docId) {
-      const docRef = doc(db, collectionName, docId);
-      return await getDoc(docRef);
-    },
-    setDocument: async function(collectionName, docId, data) {
-      const docRef = doc(db, collectionName, docId);
-      return await setDoc(docRef, data);
-    },
-    updateDocument: async function(collectionName, docId, data) {
-      const docRef = doc(db, collectionName, docId);
-      return await updateDoc(docRef, data);
-    }
-  };
-</script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKv6iwy2bUMX67Gdud48UByHl4iBvUjFc",
+            authDomain: "animeclicker-5de9c.firebaseapp.com",
+            projectId: "animeclicker-5de9c",
+            storageBucket: "animeclicker-5de9c.appspot.com",
+            messagingSenderId: "53575639513",
+            appId: "1:53575639513:web:2861bcbe65ba1bed1739c8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Make Firebase functions available globally
+        window.firebaseDB = {
+            db: db,
+            getDocument: async function(collectionName, docId) {
+                const docRef = doc(db, collectionName, docId);
+                return await getDoc(docRef);
+            },
+            setDocument: async function(collectionName, docId, data) {
+                const docRef = doc(db, collectionName, docId);
+                return await setDoc(docRef, data);
+            },
+            updateDocument: async function(collectionName, docId, data) {
+                const docRef = doc(db, collectionName, docId);
+                return await updateDoc(docRef, data);
+            }
+        };
+    </script>
+
+    <!-- Carrega o script.js como módulo -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
