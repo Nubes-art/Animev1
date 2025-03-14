@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let afeto = 0;
   let bonusPorClique = 1;
   const userId = "teste_user";
-  
+
   // Load saved progress
   try {
     const doc = await window.firebaseDB.getDocument("jogadores", userId);
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById("clique").addEventListener("click", async () => {
     afeto += bonusPorClique;
     updateAfeto();
-    
+
     try {
       await window.firebaseDB.updateDocument("jogadores", userId, { afeto: afeto });
     } catch (error) {
@@ -34,6 +34,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function updateAfeto() {
     document.getElementById("afeto").innerText = afeto;
+    
+    // Update which buttons are affordable
+    personagens.forEach((p, index) => {
+      const button = document.getElementById("loja").children[index];
+      if (button) {
+        if (afeto >= p.preco) {
+          button.classList.add("affordable");
+        } else {
+          button.classList.remove("affordable");
+        }
+      }
+    });
   }
 
   // Characters shop
@@ -51,6 +63,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const btn = document.createElement("button");
       btn.innerText = `${p.nome} - ${p.preco} 💖`;
       btn.onclick = () => comprarPersonagem(index);
+      
+      // Add character-specific styling
+      if (p.nome === "Tsundere") {
+        btn.style.backgroundColor = "#FF6B81";  // Pinkish color for Tsundere
+      } else if (p.nome === "Yandere") {
+        btn.style.backgroundColor = "#9C27B0";  // Purple color for Yandere
+      }
+      
       lojaDiv.appendChild(btn);
     });
   }
@@ -64,10 +84,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (afeto >= p.preco) {
       afeto -= p.preco;
       updateAfeto();
-      
+
       try {
         await window.firebaseDB.updateDocument("jogadores", userId, { afeto: afeto });
-        
+
         // Add bonus to total click bonus
         bonusPorClique += p.bonus;
 

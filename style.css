@@ -54,4 +54,28 @@ h2 {
 
 #loja {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#loja button {
+    width: 180px;  /* Fixed width for all shop buttons */
+    text-align: center;
+    display: block;
+    margin: 5px auto;
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+/* Optional: Add a small animation for when new items are affordable */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.affordable {
+    animation: pulse 2s infinite;
 }
