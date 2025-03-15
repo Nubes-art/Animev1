@@ -7,21 +7,44 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+
+    <!-- Tela Principal -->
+    <div id="main-screen" class="container">
         <h1>Anime Clicker</h1>
         <p>Afeto: <span id="afeto">0</span></p>
+        <p>Bônus por clique: <span id="bonus">1</span></p>
+        <p>Afeto passivo: <span id="passive">0</span></p>
+        
         <button id="clique">💖 Clicar</button>
 
         <h2>Loja</h2>
-        <div id="loja"></div>
+        <div class="tabs">
+            <button class="tab-button" data-anime="naruto">Naruto 🍥</button>
+            <button class="tab-button" data-anime="bleach">Bleach ⚔️</button>
+            <button class="tab-button" data-anime="basic">Outros 💕</button>
+        </div>
+
+        <button id="open-shop">🛒 Abrir Loja</button>
+    </div>
+
+    <!-- Tela da Loja -->
+    <div id="shop-screen" class="container hidden">
+        <h2>Loja de Personagens</h2>
+        <div id="shop-content"></div>
+        <button id="back-from-shop">🔙 Voltar</button>
+    </div>
+
+    <!-- Popup de Conquistas -->
+    <div id="achievement-popup" class="hidden">
+        <h2 id="achievement-title"></h2>
+        <p id="achievement-message"></p>
     </div>
 
     <!-- Firebase SDK (modular) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-        // Your Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDKv6iwy2bUMX67Gdud48UByHl4iBvUjFc",
             authDomain: "animeclicker-5de9c.firebaseapp.com",
@@ -31,11 +54,9 @@
             appId: "1:53575639513:web:2861bcbe65ba1bed1739c8"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Make Firebase functions available globally
         window.firebaseDB = {
             db: db,
             getDocument: async function(collectionName, docId) {
@@ -53,7 +74,7 @@
         };
     </script>
 
-    <!-- Carrega o script.js como módulo -->
     <script type="module" src="script.js"></script>
+
 </body>
 </html>

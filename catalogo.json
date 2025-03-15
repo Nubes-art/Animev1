@@ -1,0 +1,62 @@
+// catalogo.json
+{
+  "personagens": {
+    "naruto": [
+      {
+        "id": "sakura",
+        "nome": "Sakura Haruno",
+        "preco": 100,
+        "bonusClique": 2,
+        "bonusPassivo": 0,
+        "descricao": "Tsundere médica que cura seu coração 💕",
+        "emoji": "🌸",
+        "desbloqueiaConquista": "compra_naruto"
+      },
+      {
+        "id": "hinata",
+        "nome": "Hinata Hyuga",
+        "preco": 300,
+        "bonusClique": 1,
+        "bonusPassivo": 2,
+        "descricao": "Doce e tímida, mas muito dedicada 🌙",
+        "emoji": "👓"
+      }
+    ],
+    "bleach": [
+      {
+        "id": "rukia",
+        "nome": "Rukia Kuchiki",
+        "preco": 200,
+        "bonusClique": 3,
+        "bonusPassivo": 0,
+        "descricao": "Princesa Shinigami de atitude ❄️",
+        "emoji": "⚔️"
+      }
+    ],
+    "basic": [
+      {
+        "id": "tsundere",
+        "nome": "Tsundere Genérica",
+        "preco": 50,
+        "bonusClique": 1,
+        "bonusPassivo": 0,
+        "descricao": "\"I-Isso não é por sua causa, b-baka!\" 🌸",
+        "emoji": "😳"
+      }
+    ]
+  },
+  "conquistas": [
+    {
+      "id": "primeiro_clique",
+      "nome": "Primeiro Amor!",
+      "descricao": "Você clicou pela primeira vez 💘",
+      "condicao": "afetoTotal >= 1"
+    },
+    {
+      "id": "compra_naruto",
+      "nome": "Time Konoha!",
+      "descricao": "Adquiriu sua primeira waifu de Naruto 🍥",
+      "condicao": "personagensComprados.includes('sakura') || personagensComprados.includes('hinata')"
+    }
+  ]
+}

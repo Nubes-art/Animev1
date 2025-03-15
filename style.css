@@ -1,3 +1,4 @@
+/* Reset básico */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -16,29 +17,32 @@ body {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
 }
 
+/* Botões principais */
 button {
-    font-size: 20px;
-    padding: 12px 25px;
+    font-size: 18px;
+    padding: 10px 20px;
     background-color: #ff4081;
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #e91e63;
-    transform: scale(1.05); /* Efeito de aumento no botão */
+    transform: scale(1.05);
 }
 
 button:active {
-    transform: scale(1); /* Reduz o efeito de aumento quando pressionado */
+    transform: scale(1);
 }
 
+/* Texto principal */
 h1 {
     color: #ff4081;
 }
@@ -47,12 +51,34 @@ h2 {
     color: #e91e63;
 }
 
-#afeto {
+/* Exibição de Afeto */
+#afeto, #bonus, #passive {
     font-weight: bold;
     color: #ff4081;
 }
 
-#loja {
+/* Aba de navegação da loja */
+.tabs {
+    margin-top: 15px;
+}
+
+.tab-button {
+    background-color: #ff80ab;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.tab-button:hover {
+    background-color: #ff4081;
+}
+
+/* Loja */
+#shop-content {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -60,22 +86,67 @@ h2 {
     align-items: center;
 }
 
-#loja button {
-    width: 180px;  /* Fixed width for all shop buttons */
-    text-align: center;
-    display: block;
-    margin: 5px auto;
-    font-size: 18px;
-    padding: 10px 15px;
+/* Itens da Loja */
+.shop-item {
+    background: #fff3f7;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 250px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Optional: Add a small animation for when new items are affordable */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+.shop-item-image {
+    font-size: 24px;
+    margin-right: 10px;
 }
 
-.affordable {
-    animation: pulse 2s infinite;
+.shop-item-info p {
+    margin: 2px 0;
+}
+
+/* Popup de Conquistas */
+#achievement-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ff4081;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+#achievement-popup h2 {
+    margin: 0 0 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animação de notificação */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    animation: fadeInOut 3s;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }
