@@ -45,6 +45,11 @@ async function carregarCatalogo() {
 // Função para carregar o progresso salvo (Firebase ou localStorage)
 async function carregarProgresso(estado) {
     try {
+        if (!window.firebaseDB) {
+            console.log("Firebase não está disponível. Usando estado inicial.");
+            return;
+        }
+
         const doc = await window.firebaseDB.getDocument("jogadores", "user_animeclicker");
         if (doc.exists()) {
             const data = doc.data();
@@ -60,10 +65,17 @@ async function carregarProgresso(estado) {
         }
     } catch (error) {
         console.error("Erro ao carregar progresso:", error);
+    }
+}
 
 // Função para salvar o progresso (Firebase ou localStorage)
 async function salvarProgresso(estado) {
     try {
+        if (!window.firebaseDB) {
+            console.log("Firebase não está disponível. Não foi possível salvar o progresso.");
+            return;
+        }
+
         await window.firebaseDB.updateDocument("jogadores", "user_animeclicker", {
             afeto: estado.afeto,
             bonusPorClique: estado.bonusPorClique,
@@ -73,6 +85,8 @@ async function salvarProgresso(estado) {
         });
     } catch (error) {
         console.error("Erro ao salvar progresso no Firebase:", error);
+    }
+}
 
 // Função para inicializar a interface do jogo
 function inicializarInterface(catalogo, estado) {
