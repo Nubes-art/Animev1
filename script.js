@@ -60,26 +60,6 @@ async function carregarProgresso(estado) {
         }
     } catch (error) {
         console.error("Erro ao carregar progresso:", error);
-        // Fallback para localStorage se Firebase falhar
-        const savedData = localStorage.getItem('animeClickerSave');
-        if (savedData) {
-            try {
-                const data = JSON.parse(savedData);
-                estado.afeto = data.afeto || 0;
-                estado.bonusPorClique = data.bonusPorClique || 1;
-                estado.afetoPassivo = data.afetoPassivo || 0;
-                estado.personagensComprados = data.personagensComprados || [];
-                estado.conquistasDesbloqueadas = data.conquistasDesbloqueadas || [];
-
-                if (estado.afetoPassivo > 0) {
-                    iniciarPassivo(estado);
-                }
-            } catch (e) {
-                console.error("Erro ao carregar dados do localStorage:", e);
-            }
-        }
-    }
-}
 
 // Função para salvar o progresso (Firebase ou localStorage)
 async function salvarProgresso(estado) {
@@ -93,20 +73,6 @@ async function salvarProgresso(estado) {
         });
     } catch (error) {
         console.error("Erro ao salvar progresso no Firebase:", error);
-        // Fallback para localStorage
-        try {
-            localStorage.setItem('animeClickerSave', JSON.stringify({
-                afeto: estado.afeto,
-                bonusPorClique: estado.bonusPorClique,
-                afetoPassivo: estado.afetoPassivo,
-                personagensComprados: estado.personagensComprados,
-                conquistasDesbloqueadas: estado.conquistasDesbloqueadas
-            }));
-        } catch (e) {
-            console.error("Erro ao salvar no localStorage:", e);
-        }
-    }
-}
 
 // Função para inicializar a interface do jogo
 function inicializarInterface(catalogo, estado) {
